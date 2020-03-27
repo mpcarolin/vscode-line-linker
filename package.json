@@ -2,7 +2,7 @@
 	"name": "line-linker",
 	"displayName": "line-linker",
 	"description": "Quickly get an app link to a file and line number in vscode",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
