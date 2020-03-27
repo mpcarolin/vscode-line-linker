@@ -4,7 +4,7 @@
 	"displayName": "line-linker",
 	"description": "Quickly get an app link to a file and line number in vscode",
 	"repository": "https://github.com/mpcarolin/vscode-line-linker",
-	"version": "1.3.0",
+	"version": "1.4.0",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
