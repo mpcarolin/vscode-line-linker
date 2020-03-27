@@ -49,7 +49,6 @@
 		"vscode-test": "^1.3.0"
 	},
 	"dependencies": {
-		"jsutils": "git+https://github.com/lancetipton/jsutils.git#970b0aa69a3dc9dd95a0b335f4a866d2bad608e6",
-		"clipboardy": "^2.3.0"
+		"clipboardy": "2.3.0"
 	}
 }

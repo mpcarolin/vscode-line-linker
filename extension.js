@@ -1,7 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
-const { get } = require('jsutils/build/cjs')
 const clipboardy = require('clipboardy')
 
 // this method is called when your extension is activated
@@ -11,6 +10,18 @@ const extensionName = 'extension.linkLine'
 
 const vsalert = vscode.window.showInformationMessage
 
+const get = (obj, path) => {
+	const props = path.split('.')
+	let value = obj
+	props.forEach(prop => {
+		if (!value || typeof value !== 'object') 
+			return null
+
+		value = value[prop]
+	})
+	return value
+}
+
 const getActiveFilePath = () => {
 	const uri = get(vscode,'window.activeTextEditor.document.fileName')
 	return uri
@@ -18,6 +29,7 @@ const getActiveFilePath = () => {
 		: null
 }
 const getActiveLineNumber = () => get(vscode,'window.activeTextEditor.selection.active.line')
+
 const makeAppLink = (path, lineNumber) => {
 	const appLinkPrefix = 'vscode://file'
 	const fileLink = `${appLinkPrefix}${path}`
@@ -28,8 +40,9 @@ const makeAppLink = (path, lineNumber) => {
 
 const copyLinkToClipboard = async () => {
 		const path = getActiveFilePath()
-		const lineNumber = getActiveLineNumber().toString()
-		const link = makeAppLink(path, lineNumber)
+		const lineNumber = getActiveLineNumber()
+		vsalert("Line: " + JSON.stringify(lineNumber))
+		const link = makeAppLink(path, lineNumber.toString())
 		clipboardy
 			.write(link)
 			.then(_ => vsalert(`Copied link to clipboard!`))
