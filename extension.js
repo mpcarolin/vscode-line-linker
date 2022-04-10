@@ -31,7 +31,11 @@ const getActiveFilePath = () => {
 const getActiveLineNumber = () => get(vscode,'window.activeTextEditor.selection.active.line')
 
 const makeAppLink = (path, lineNumber) => {
-	const appLinkPrefix = 'vscode://file'
+	let appLinkPrefix = 'vscode://file'
+	if (path[0] != "/" && path[0] != "\\") {
+		appLinkPrefix += "/";
+	}
+	
 	const fileLink = `${appLinkPrefix}${path}`
 	return lineNumber
 		? `${fileLink}:${lineNumber}`
